@@ -22,19 +22,21 @@ import java.io.IOException
 class ShareActivity : AppCompatActivity() {
 
     private val client = OkHttpClient()
+    private lateinit var dbHelper: DatabaseHelper
     private lateinit var handler: Handler
     private var isRequestRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Get the shared preferences
-        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
-        val url = sharedPreferences.getString("url", null)
-        val token = sharedPreferences.getString("token", null)
+        dbHelper = DatabaseHelper(this)
+        dbHelper.open()
 
         // Get the shared text
         val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+
+        val url = dbHelper.getUrl()
+        val token = dbHelper.getToken()
 
         if (url != null && token != null && sharedText != null) {
             sendPostRequest(url, token, sharedText)
