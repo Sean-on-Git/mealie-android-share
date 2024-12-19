@@ -82,9 +82,11 @@ class ShareActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 isRequestRunning = false
                 if (response.isSuccessful) {
-                    sendNotification("Request successful!")
+                    runOnUiThread {
+                        Toast.makeText(this@ShareActivity, "URL sent to your Mealie API", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    sendNotification("Request failed: ${response.message}")
+                    sendNotification("Request failed: ${response.code} ${response.message}")
                 }
                 finish()
             }
@@ -108,7 +110,7 @@ class ShareActivity : AppCompatActivity() {
         val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle("Mealie URL Share")
             .setContentText(message)
-            .setSmallIcon(R.drawable.baseline_error_24) // Replace with your notification icon
+            .setSmallIcon(R.mipmap.mealie_upload_round) // Replace with your notification icon
             .setAutoCancel(true)
             .build()
 
