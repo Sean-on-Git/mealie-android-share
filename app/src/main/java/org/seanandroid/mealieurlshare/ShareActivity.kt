@@ -100,7 +100,7 @@ class ShareActivity : AppCompatActivity() {
         val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle("Mealie URL Share")
             .setContentText(message)
-            //.setSmallIcon(R.drawable.ic_notification) // Replace with your notification icon
+            .setSmallIcon(R.drawable.baseline_error_24) // Replace with your notification icon
             .setAutoCancel(true)
             .build()
 
