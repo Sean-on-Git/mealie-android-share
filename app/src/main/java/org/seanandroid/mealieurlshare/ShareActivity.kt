@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import okhttp3.Call
 import okhttp3.Callback
-import okhttp3.FormBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.json.JSONObject
 import java.io.IOException
 
 class ShareActivity : AppCompatActivity() {
@@ -44,10 +46,16 @@ class ShareActivity : AppCompatActivity() {
 
     private fun sendPostRequest(url: String, token: String, sharedText: String) {
         isRequestRunning = true
-        val fullUrl = "$url/api/recipe/create/url"
-        val requestBody = FormBody.Builder()
-            .add("data", sharedText)
-            .build()
+        val fullUrl = "$url/api/recipes/create/url"
+
+        // Create JSON object for the request body
+        val jsonBody = JSONObject()
+        jsonBody.put("includeTags", false) // Set includeTags to false
+        jsonBody.put("url", sharedText) // Set the URL to the shared text
+
+        // Create the request body with JSON media type
+        val requestBody = jsonBody.toString()
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
         val request = Request.Builder()
             .url(fullUrl)
