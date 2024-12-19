@@ -14,6 +14,6 @@ NOTE: This doesn't verify URLs or check for duplicates.
 
 Screenshots:
 
-![sharing_url](Screenshot_share.png){: width="200" height="100"}
+![sharing_url](Screenshot_share.png)<img width="200" height="100">
 
-![app_screen](Screenshot_app.png){: width="200" height="100"}
+![app_screen](Screenshot_app.png)<img width="200" height="100">
