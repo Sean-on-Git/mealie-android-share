@@ -1,5 +1,6 @@
 [versions]
 agp = "8.7.3"
+appcompatResources = "1.7.0"
 kotlin = "2.0.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
@@ -11,6 +12,7 @@ composeBom = "2024.04.01"
 appcompat = "1.7.0"
 
 [libraries]
+androidx-appcompat-resources = { module = "androidx.appcompat:appcompat-resources", version.ref = "appcompatResources" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
