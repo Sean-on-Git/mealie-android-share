@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/urlEditText"
+        android:layout_width="337dp"
+        android:layout_height="85dp"
+        android:autofillHints="0"
+        android:baselineAligned="false"
+        android:hint="Enter URL"
+        android:inputType="textUri" />
+
+    <EditText
+        android:id="@+id/tokenEditText"
+        android:layout_width="337dp"
+        android:layout_height="80dp"
+        android:hint="Enter TOKEN"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+</LinearLayout>
+

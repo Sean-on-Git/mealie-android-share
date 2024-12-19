@@ -1,47 +1,31 @@
 package org.seanandroid.mealieurlshare
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import org.seanandroid.mealieurlshare.ui.theme.MealieURLShareTheme
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import org.seanandroid.mealieurlshare.databinding.ActivityMainBinding
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MealieURLShareTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.saveButton.setOnClickListener {
+            val url = binding.urlEditText.text.toString()
+            val token = binding.tokenEditText.text.toString()
+            // Save URL and TOKEN in SharedPreferences
+            val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+            with(sharedPreferences.edit()) {
+                putString("url", url)
+                putString("token", token)
+                apply()
             }
+            // Show a Toast message to confirm saving
+            Toast.makeText(this, "URL and TOKEN saved", Toast.LENGTH_SHORT).show()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MealieURLShareTheme {
-        Greeting("Android")
     }
 }
