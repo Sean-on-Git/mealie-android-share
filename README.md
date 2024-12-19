@@ -14,6 +14,6 @@ NOTE: This doesn't verify URLs or check for duplicates.
 
 Screenshots:
 
-![sharing_url](Screenshot_share.png =200x100)
+<img src="Screenshot_share.png" alt="sharing" width="33%" height="33%">
 
-![app_screen](Screenshot_app.png =200x100)
+<img src="Screenshot_app.png" alt="sharing" width="33%" height="33%">
