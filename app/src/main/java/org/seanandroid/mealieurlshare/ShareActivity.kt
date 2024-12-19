@@ -35,6 +35,7 @@ class ShareActivity : AppCompatActivity() {
         // Get the shared text
         val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
 
+        // pull variables from our app's SQLite DB
         val url = dbHelper.getUrl()
         val token = dbHelper.getToken()
 
@@ -44,6 +45,12 @@ class ShareActivity : AppCompatActivity() {
             Toast.makeText(this, "URL or TOKEN not set", Toast.LENGTH_SHORT).show()
             finish()
         }
+    }
+
+    // Closes DB when process closes
+    override fun onDestroy() {
+        super.onDestroy()
+        dbHelper.close()
     }
 
     private fun sendPostRequest(url: String, token: String, sharedText: String) {
@@ -84,6 +91,7 @@ class ShareActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 isRequestRunning = false
                 if (response.isSuccessful) {
+                    // Send a Toast notification to the running UI (if successfully POSTed)
                     runOnUiThread {
                         Toast.makeText(this@ShareActivity, "URL sent to your Mealie API", Toast.LENGTH_SHORT).show()
                     }
