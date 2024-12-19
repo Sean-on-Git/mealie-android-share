@@ -14,6 +14,7 @@ NOTE: This doesn't verify URLs or check for duplicates.
 
 Screenshots:
 
-<img src="Screenshot_share.png" alt="sharing" width="33%" height="33%">
-
-<img src="Screenshot_app.png" alt="sharing" width="33%" height="33%">
+<div style="display: flex; flex-direction: row;">
+    <img src="Screenshot_share.png" alt="sharing" width="33%" height="33%">
+    <img src="Screenshot_app.png" alt="sharing" width="33%" height="33%">
+</div>
